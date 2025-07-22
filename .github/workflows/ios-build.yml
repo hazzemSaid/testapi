@@ -20,9 +20,7 @@ jobs:
       - name: Install Flutter dependencies
         run: flutter pub get
 
-      - name: Install CocoaPods dependencies
-        run: pod install
-        working-directory: ios
+      # 🔥 Removed: pod install (Flutter handles this internally)
 
       - name: Update Pod Repo
         run: pod repo update
