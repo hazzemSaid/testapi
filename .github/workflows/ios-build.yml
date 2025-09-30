@@ -46,3 +46,12 @@ jobs:
           files: build/ios/iphoneos/FlutterIpaExport.ipa
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 📲 Upload to Appetize.io
+        run: |
+          curl -s -X POST https://api.appetize.io/v1/apps \
+          -H "Authorization: Bearer ${{ secrets.APPETIZE_API_TOKEN }}" \
+          -F "platform=ios" \
+          -F "file=@build/ios/iphoneos/FlutterIpaExport.ipa" \
+          -F "note=Uploaded via GitHub Actions" \
+          -F "public=true"
